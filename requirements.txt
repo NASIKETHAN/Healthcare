@@ -5,7 +5,7 @@ numpy
 pandas
 tensorflow
 google.generativeai
-gtts
+gTTS
 speechrecognition
 tempfile
 os
