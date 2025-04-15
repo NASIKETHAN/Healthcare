@@ -5,3 +5,7 @@ numpy
 pandas
 tensorflow
 google.generativeai
+gtts
+speechrecognition
+tempfile
+os
