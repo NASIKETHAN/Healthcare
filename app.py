@@ -14,7 +14,9 @@ import os
 
 
 nltk.download('punkt_tab')
-
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('omw-1.4') 
 
 # Setting the API key
 gemani_api_key = "your key here"
