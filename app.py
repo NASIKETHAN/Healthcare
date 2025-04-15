@@ -12,6 +12,10 @@ import speech_recognition as sr
 import tempfile
 import os
 
+
+nltk.download('punkt_tab')
+
+
 # Setting the API key
 gemani_api_key = "your key here"
 
