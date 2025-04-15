@@ -5,5 +5,5 @@ numpy
 pandas
 tensorflow
 google-generativeai
-gtts==2.3.2
+gTTS
 SpeechRecognition
