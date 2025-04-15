@@ -4,8 +4,6 @@ scikit-learn
 numpy
 pandas
 tensorflow
-google.generativeai
+google-generativeai
 gtts==2.3.2
-speechrecognition
-tempfile
-os
+SpeechRecognition
