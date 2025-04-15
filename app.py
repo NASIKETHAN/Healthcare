@@ -138,21 +138,32 @@ def text_to_speech(text):
 
 # Speech-to-Text Function (Updated for multilingual input)
 def speech_to_text():
+    import tempfile
     recognizer = sr.Recognizer()
     user_language = st.session_state.get("user_language", "English")
     recognition_language = LANGUAGE_RECOGNITION_CODE_MAP.get(user_language, "en-IN")
 
-    with sr.Microphone() as source:
-        st.info(f"Listening ({user_language})... Speak now!")
-        try:
-            audio = recognizer.listen(source, timeout=5)
-            query = recognizer.recognize_google(audio, language=recognition_language)
-            return query
-        except sr.UnknownValueError:
-            st.error("Sorry, I couldn't understand your voice.")
-        except sr.RequestError as e:
-            st.error("Could not request results. Check your internet connection.")
+    # Upload audio file instead of using microphone
+    uploaded_file = st.file_uploader("Upload a WAV audio file", type=["wav"])
+
+    if uploaded_file is not None:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as temp_audio:
+            temp_audio.write(uploaded_file.read())
+            temp_audio_path = temp_audio.name
+
+        with sr.AudioFile(temp_audio_path) as source:
+            st.info(f"Processing uploaded audio... ({user_language})")
+            try:
+                audio = recognizer.record(source)
+                query = recognizer.recognize_google(audio, language=recognition_language)
+                return query
+            except sr.UnknownValueError:
+                st.error("Sorry, I couldn't understand the audio.")
+            except sr.RequestError:
+                st.error("Could not request results. Check your internet connection.")
+
     return None
+
 
 # --- Streamlit UI ---
 st.set_page_config(page_title="Health Care Chatbot", page_icon="🧠")
