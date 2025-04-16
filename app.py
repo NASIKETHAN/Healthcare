@@ -19,7 +19,7 @@ nltk.download('wordnet')
 nltk.download('omw-1.4') 
 
 # Setting the API key
-gemani_api_key = "your key here"
+gemani_api_key = "AIzaSyAdYIWnEOwlk8UzNXRnjCOnvYmXURpTZRw"
 
 if not gemani_api_key:
     raise ValueError("Please Add API Key")
